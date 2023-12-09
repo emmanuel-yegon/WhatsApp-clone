@@ -9,8 +9,8 @@ android {
 
     defaultConfig {
         applicationId = "com.emmanuel_yegon.ETchat"
-        minSdk = 24
-        targetSdk = 33
+        minSdk = 28
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
