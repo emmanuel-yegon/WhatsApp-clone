@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.emmanuel_yegon.ETchat.Adapter.FragmentsAdapter;
 import com.emmanuel_yegon.ETchat.databinding.ActivityMainBinding;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -26,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         mAuth = FirebaseAuth.getInstance();
+
+        binding.viewPager.setAdapter(new FragmentsAdapter(getSupportFragmentManager()));
+        binding.tabLayout.setupWithViewPager(binding.viewPager);
 
     }
 
@@ -52,20 +56,3 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
-
-
-//        switch (item.getItemId())
-//        {
-//            case  R.id.settings:
-//                Toast.makeText(this,"Settings is clicked",Toast.LENGTH_SHORT).show();
-//                break;
-//
-//            case  R.id.groupChat:
-//                Toast.makeText(this,"Start a group chat",Toast.LENGTH_SHORT).show();
-//                break;
-//
-//            case  R.id.logout:
-//                Toast.makeText(this,"Logout",Toast.LENGTH_SHORT).show();
-//                break;
-//
-//        }
