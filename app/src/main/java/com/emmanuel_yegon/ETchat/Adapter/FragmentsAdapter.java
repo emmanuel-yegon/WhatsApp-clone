@@ -20,14 +20,10 @@ public class FragmentsAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         switch (position) {
-            case 0:
-                return new ChatsFragment();
-            case 1:
-                return new StatusFragment();
-            case 2:
-                return new CallsFragment();
-            default:
-                return new ChatsFragment();
+            case 0: return new ChatsFragment();
+            case 1: return new StatusFragment();
+            case 2: return new CallsFragment();
+            default: return new ChatsFragment();
         }
     }
 
@@ -35,6 +31,7 @@ public class FragmentsAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return 3;
     }
+
 
     @Nullable
     @Override
