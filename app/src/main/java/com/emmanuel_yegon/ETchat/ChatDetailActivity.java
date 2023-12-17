@@ -43,5 +43,6 @@ public class ChatDetailActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 }
