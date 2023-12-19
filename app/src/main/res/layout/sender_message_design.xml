@@ -37,7 +37,6 @@
             android:maxWidth="270dp"
             android:minWidth="50dp"
             android:text="ETech Days"
-
             app:layout_constraintBottom_toTopOf="@id/senderTime"
             app:layout_constraintEnd_toStartOf="@id/guideline2"
             app:layout_constraintStart_toStartOf="parent"
