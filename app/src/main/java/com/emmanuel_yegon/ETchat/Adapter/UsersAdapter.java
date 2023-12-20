@@ -14,6 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.emmanuel_yegon.ETchat.ChatDetailActivity;
 import com.emmanuel_yegon.ETchat.Models.Users;
 import com.emmanuel_yegon.ETchat.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -42,16 +47,37 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
         Picasso.get().load(users.getProfilePic()).placeholder(R.drawable.avatar3).into(holder.image);
         holder.userName.setText(users.getUserName());
 
-         holder.itemView.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 Intent intent = new Intent(context, ChatDetailActivity.class);
+        //To set last message
+        FirebaseDatabase.getInstance().getReference().child("chats")
+                .child(FirebaseAuth.getInstance().getUid() + users.getUserId())
+                .orderByChild("timestamp")
+                .limitToLast(1)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                             if(snapshot.hasChildren()){
+                                 for(DataSnapshot snapshot1:snapshot.getChildren()){
+                                     holder.lastMessage.setText(snapshot1.child("message").getValue().toString());
+                                 }
+                             }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                 intent.putExtra("userId",users.getUserId());
-                 intent.putExtra("profilePic",users.getProfilePic());
-                 intent.putExtra("userName",users.getUserName());
+                    }
+                });
 
-                 context.startActivity(intent);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ChatDetailActivity.class);
+
+                intent.putExtra("userId", users.getUserId());
+                intent.putExtra("profilePic", users.getProfilePic());
+                intent.putExtra("userName", users.getUserName());
+
+                context.startActivity(intent);
              }
          });
     }
