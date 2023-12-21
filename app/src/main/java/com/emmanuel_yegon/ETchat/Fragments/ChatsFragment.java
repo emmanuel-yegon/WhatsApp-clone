@@ -1,20 +1,17 @@
 package com.emmanuel_yegon.ETchat.Fragments;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
 import com.emmanuel_yegon.ETchat.Adapter.UsersAdapter;
 import com.emmanuel_yegon.ETchat.Models.Users;
-import com.emmanuel_yegon.ETchat.R;
 import com.emmanuel_yegon.ETchat.databinding.FragmentChatsBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
